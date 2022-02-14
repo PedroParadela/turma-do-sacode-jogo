@@ -27,14 +27,14 @@ class Level:
 		self.dust_sprite = pygame.sprite.GroupSingle()
 		self.player_on_ground = False
 		self.explosion_sprites = pygame.sprite.Group()
-		terrain_layout = import_csv_layout(level_data['terrain'])
-		self.terrain_sprites = self.criaTiling(terrain_layout,'terrain')
+		terrain_layout = import_csv_layout(level_data['terreno'])
+		self.terrain_sprites = self.criaTiling(terrain_layout,'terreno')
 		grass_layout = import_csv_layout(level_data['grass'])
 		self.grass_sprites = self.criaTiling(grass_layout,'grass')
 		crate_layout = import_csv_layout(level_data['crates'])
 		self.crate_sprites = self.criaTiling(crate_layout,'crates')
-		coin_layout = import_csv_layout(level_data['coins'])
-		self.coin_sprites = self.criaTiling(coin_layout,'coins')
+		coin_layout = import_csv_layout(level_data['moedas'])
+		self.coin_sprites = self.criaTiling(coin_layout,'moedas')
 		fg_palm_layout = import_csv_layout(level_data['fg palms'])
 		self.fg_palm_sprites = self.criaTiling(fg_palm_layout,'fg palms')
 		bg_palm_layout = import_csv_layout(level_data['bg palms'])
@@ -55,27 +55,27 @@ class Level:
 				if val != '-1':
 					x = col_index * tile_size
 					y = row_index * tile_size
-					if type == 'terrain':
-						terrain_tile_list = import_cut_graphics('../graphics/terrain/terrain_tiles.png')
+					if type == 'terreno':
+						terrain_tile_list = import_cut_graphics('../graphics/terreno/terrain_tiles.png')
 						tile_surface = terrain_tile_list[int(val)]
 						sprite = StaticTile(tile_size,x,y,tile_surface)
 					if type == 'grass':
-						grass_tile_list = import_cut_graphics('../graphics/decoration/grass/grass.png')
+						grass_tile_list = import_cut_graphics('../graphics/decoraçao/grass/grass.png')
 						tile_surface = grass_tile_list[int(val)]
 						sprite = StaticTile(tile_size,x,y,tile_surface)
 					if type == 'crates':
 						sprite = Crate(tile_size,x,y)
 
-					if type == 'coins':
-						if val == '0': sprite = Coin(tile_size,x,y,'../graphics/coins/gold',5)
-						if val == '1': sprite = Coin(tile_size,x,y,'../graphics/coins/silver',1)
+					if type == 'moedas':
+						if val == '0': sprite = Coin(tile_size, x, y, '../graphics/moedas/gold', 5)
+						if val == '1': sprite = Coin(tile_size, x, y, '../graphics/moedas/silver', 1)
 
 					if type == 'fg palms':
-						if val == '0': sprite = Palm(tile_size,x,y,'../graphics/terrain/palm_small',38)
-						if val == '1': sprite = Palm(tile_size,x,y,'../graphics/terrain/palm_large',64)
+						if val == '0': sprite = Palm(tile_size, x, y, '../graphics/terreno/palm_small', 38)
+						if val == '1': sprite = Palm(tile_size, x, y, '../graphics/terreno/palm_large', 64)
 
 					if type == 'bg palms':
-						sprite = Palm(tile_size,x,y,'../graphics/terrain/palm_bg',64)
+						sprite = Palm(tile_size, x, y, '../graphics/terreno/palm_bg', 64)
 
 					if type == 'enemies':
 						sprite = Enemy(tile_size,x,y)
@@ -96,7 +96,7 @@ class Level:
 					sprite = Player((x,y),self.display_surface,self.create_jump_particles,mudaVida)
 					self.player.add(sprite)
 				if val == '1':
-					hat_surface = pygame.image.load('../graphics/character/hat.png').convert_alpha()
+					hat_surface = pygame.image.load('../graphics/personagem/hat.png').convert_alpha()
 					sprite = StaticTile(tile_size,x,y,hat_surface)
 					self.goal.add(sprite)
 
@@ -210,7 +210,7 @@ class Level:
 					self.player.sprite.get_damage()
 
 	def run(self):
-		# run the entire game / level 
+		# run the entire game / level
 		
 		# sky 
 		self.sky.draw(self.display_surface)
@@ -224,11 +224,11 @@ class Level:
 		self.dust_sprite.update(self.world_shift)
 		self.dust_sprite.draw(self.display_surface)
 		
-		# terrain 
+		# terreno
 		self.terrain_sprites.update(self.world_shift)
 		self.terrain_sprites.draw(self.display_surface)
 		
-		# enemy 
+		# inimigo
 		self.enemy_sprites.update(self.world_shift)
 		self.constraint_sprites.update(self.world_shift)
 		self.enemy_collision_reverse()
@@ -244,7 +244,7 @@ class Level:
 		self.grass_sprites.update(self.world_shift)
 		self.grass_sprites.draw(self.display_surface)
 
-		# coins 
+		# moedas
 		self.coin_sprites.update(self.world_shift)
 		self.coin_sprites.draw(self.display_surface)
 

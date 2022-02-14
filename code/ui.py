@@ -12,7 +12,7 @@ class UI:
 		self.bar_max_width = 152
 		self.bar_height = 4
 
-		# coins 
+		# moedas
 		self.coin = pygame.image.load('../graphics/ui/coin.png').convert_alpha()
 		self.coin_rect = self.coin.get_rect(topleft = (50,61))
 		self.font = pygame.font.Font('../graphics/ui/ARCADEPI.ttf',30)

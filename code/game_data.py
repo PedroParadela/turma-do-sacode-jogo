@@ -1,6 +1,6 @@
 level_0 = {
-		'terrain': '../levels/0/level_0_terrain.csv',
-		'coins':'../levels/0/level_0_coins.csv',
+		'terreno': '../levels/0/level_0_terrain.csv',
+		'moedas':'../levels/0/level_0_coins.csv',
 		'fg palms':'../levels/0/level_0_fg_palms.csv',
 		'bg palms':'../levels/0/level_0_bg_palms.csv',
 		'crates': '../levels/0/level_0_crates.csv',
@@ -12,8 +12,8 @@ level_0 = {
 		'unlock': 1,
 		'node_graphics': '../graphics/overworld/0'}
 level_1 = {
-		'terrain': '../levels/1/level_1_terrain.csv',
-		'coins':'../levels/1/level_1_coins.csv',
+		'terreno': '../levels/1/level_1_terrain.csv',
+		'moedas':'../levels/1/level_1_coins.csv',
 		'fg palms':'../levels/1/level_1_fg_palms.csv',
 		'bg palms':'../levels/1/level_1_bg_palms.csv',
 		'crates': '../levels/1/level_1_crates.csv',
@@ -25,8 +25,8 @@ level_1 = {
 		'node_graphics': '../graphics/overworld/1',
 		'unlock': 2}
 level_2 = {
-		'terrain': '../levels/2/level_2_terrain.csv',
-		'coins':'../levels/2/level_2_coins.csv',
+		'terreno': '../levels/2/level_2_terrain.csv',
+		'moedas':'../levels/2/level_2_coins.csv',
 		'fg palms':'../levels/2/level_2_fg_palms.csv',
 		'bg palms':'../levels/2/level_2_bg_palms.csv',
 		'crates': '../levels/2/level_2_crates.csv',
@@ -38,8 +38,8 @@ level_2 = {
 		'node_graphics': '../graphics/overworld/2',
 		'unlock': 3}
 level_3 = {
-		'terrain': '../levels/2/level_2_terrain.csv',
-		'coins':'../levels/2/level_2_coins.csv',
+		'terreno': '../levels/2/level_2_terrain.csv',
+		'moedas':'../levels/2/level_2_coins.csv',
 		'fg palms':'../levels/2/level_2_fg_palms.csv',
 		'bg palms':'../levels/2/level_2_bg_palms.csv',
 		'crates': '../levels/2/level_2_crates.csv',
@@ -51,8 +51,8 @@ level_3 = {
 		'node_graphics': '../graphics/overworld/3',
 		'unlock': 4}
 level_4 = {
-		'terrain': '../levels/2/level_2_terrain.csv',
-		'coins':'../levels/2/level_2_coins.csv',
+		'terreno': '../levels/2/level_2_terrain.csv',
+		'moedas':'../levels/2/level_2_coins.csv',
 		'fg palms':'../levels/2/level_2_fg_palms.csv',
 		'bg palms':'../levels/2/level_2_bg_palms.csv',
 		'crates': '../levels/2/level_2_crates.csv',
@@ -64,8 +64,8 @@ level_4 = {
 		'node_graphics': '../graphics/overworld/4',
 		'unlock': 5}
 level_5 = {
-		'terrain': '../levels/2/level_2_terrain.csv',
-		'coins':'../levels/2/level_2_coins.csv',
+		'terreno': '../levels/2/level_2_terrain.csv',
+		'moedas':'../levels/2/level_2_coins.csv',
 		'fg palms':'../levels/2/level_2_fg_palms.csv',
 		'bg palms':'../levels/2/level_2_bg_palms.csv',
 		'crates': '../levels/2/level_2_crates.csv',

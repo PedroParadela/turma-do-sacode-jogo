@@ -1,73 +1,58 @@
-import pygame, sys
-from settings import * 
-from level import Level
-from overworld import Overworld
-from ui import UI
+from PPlay.window import *
+from PPlay.gameimage import *
+from PPlay.sprite import *
 
-class Game:
-	def __init__(self):
-		self.max_level = 2
-		self.max_health = 100
-		self.cur_health = 100
-		self.coins = 0
-		self.level_bg_music = pygame.mixer.Sound('../audio/level_music.wav')
-		self.overworld_bg_music = pygame.mixer.Sound('../audio/overworld_music.wav')
-		self.overworld = Overworld(0,self.max_level,screen,self.criaLevel)
-		self.status = 'overworld'
-		self.overworld_bg_music.play(loops = -1)
-		self.ui = UI(screen)
+from menu import start
 
-	def criaLevel(self,current_level):
-		self.level = Level(current_level,screen,self.criaMapa,self.mudaMoedas,self.mudaVida)
-		self.status = 'level'
-		self.overworld_bg_music.stop()
-		self.level_bg_music.play(loops = -1)
+# Criando a Janela:
+janela = Window(1200, 704)
+janela.set_title("Menu")
 
-	def criaMapa(self,current_level,new_max_level):
-		if new_max_level > self.max_level:
-			self.max_level = new_max_level
-		self.overworld = Overworld(current_level,self.max_level,screen,self.criaLevel)
-		self.status = 'overworld'
-		self.overworld_bg_music.play(loops = -1)
-		self.level_bg_music.stop()
+comprimento_janela = janela.width
+altura_janela = janela.height
 
-	def mudaMoedas(self,amount):
-		self.coins += amount
+# Criando imagem de fundo:
+img_fundo = GameImage("sprites/1200x704.jpeg")
 
-	def mudaVida(self,amount):
-		self.cur_health += amount
+# Criando o Zeca
+zeca = Sprite("sprites/Parado.png")
+zeca.set_position(250, 500)
 
-	def isGameOver(self):
-		if self.cur_health <= 0:
-			self.cur_health = 100
-			self.coins = 0
-			self.max_level = 0
-			self.overworld = Overworld(0,self.max_level,screen,self.criaLevel)
-			self.status = 'overworld'
-			self.level_bg_music.stop()
-			self.overworld_bg_music.play(loops = -1)
+velocidade_zeca = 500
 
-	def run(self):
-		if self.status == 'overworld':
-			self.overworld.run()
-		else:
-			self.level.run()
-			self.ui.show_health(self.cur_health,self.max_health)
-			self.ui.show_coins(self.coins)
-			self.isGameOver()
-
-pygame.init()
-screen = pygame.display.set_mode((screen_width,screen_height))
-clock = pygame.time.Clock()
-game = Game()
-game.criaLevel(0)
-
+contador_tempo = 0
+vazio = False
+# Game Loop:
 while True:
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			pygame.quit()
-			sys.exit()
-	screen.fill('grey')
-	game.run()
-	pygame.display.update()
-	clock.tick(60)
+
+    # Entrada de dados:
+    if janela.get_keyboard().key_pressed("enter"):
+        start()
+
+    if janela.get_keyboard().key_pressed("right"):
+        zeca.x += velocidade_zeca*janela.delta_time()
+    # Update:
+    contador_tempo += janela.delta_time()
+    if contador_tempo >= 0.25:
+        vazio = not vazio
+        contador_tempo = 0
+
+    # Desenho:
+
+    # Desenhando imagem de fundo:
+    img_fundo.draw()
+
+    # Desenhando o sprite:
+    zeca.draw()
+
+    # Desenhando o texto:
+    janela.draw_text("Sacode's Gang", (janela.width - 450) / 2, 200, size=100, color=("yellow"),
+                     font_name="Ancient Modern Tales",
+                     bold=False, italic=False)
+
+    janela.draw_text("Pressione <Enter> para iniciar", (janela.width - 500) / 2, 450, size=35,
+                     color=("black" if not vazio else "white"), font_name="connection ii",
+                     bold=False, italic=False)
+
+    # Swap Buffer:
+    janela.update()
